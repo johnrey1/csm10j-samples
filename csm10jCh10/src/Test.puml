@@ -1,0 +1,15 @@
+@startuml
+annotation java.lang.Override
+class csm10jch10.Inheritance.Box
+class csm10jch10.Inheritance.LockBox
+class csm10jch10.Inheritance.Polygon
+class csm10jch10.Inheritance.Rectangle
+class csm10jch10.Inheritance.Square
+class csm10jch10.RunExamples
+csm10jch10.Inheritance.Box ..> java.lang.Override
+csm10jch10.Inheritance.Box --|> csm10jch10.Inheritance.Rectangle
+csm10jch10.Inheritance.LockBox --|> csm10jch10.Inheritance.Box
+csm10jch10.Inheritance.Rectangle ..> java.lang.Override
+csm10jch10.Inheritance.Rectangle --|> csm10jch10.Inheritance.Polygon
+csm10jch10.Inheritance.Square --|> csm10jch10.Inheritance.Rectangle
+@enduml
