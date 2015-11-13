@@ -11,6 +11,9 @@ import java.awt.Container;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -72,6 +75,7 @@ public class GuiRectangle extends JFrame {
     }
     
     
+    
     public void RectangleGridLayout(){
         JFrame rectApp = new JFrame();
         rectApp.setSize(400, 300);
@@ -98,6 +102,34 @@ public class GuiRectangle extends JFrame {
 
         exitBtn.addActionListener(new ExitButtonHandler());
         calcBtn.addActionListener(new CalcButtonHandler());
+        
+        lengthLbl.addMouseListener(new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent me){
+                JLabel lbl = (JLabel)me.getSource();
+                System.out.println(lbl.getText() + " was clicked");
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+        });
         
         rectApp.setVisible(true);
         rectApp.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);        

@@ -5,11 +5,13 @@
  */
 package csm10jch11;
 
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import javax.swing.JButton;
 
 /**
  *
@@ -17,7 +19,7 @@ import java.awt.event.MouseEvent;
  */
 public class EventHandlingExamples {
 
-    private static void InnerClassPoints() {
+    public static void InnerClassPoints() {
         InnerClassPointsExample ex = new InnerClassPointsExample();
 
         System.out.println("Adding points");
@@ -34,7 +36,7 @@ public class EventHandlingExamples {
         // InnerClassPointsExample.Point3D point = ex.new Point3D(1,2,3);
     }
 
-    private static void RectActionEvent() {
+    public static void RectActionEvent() {
         GuiRectangle rect = new GuiRectangle();
         rect.RectangleGridLayout();
     }
@@ -51,15 +53,15 @@ public class EventHandlingExamples {
         }
     }
 
-    private static void RectMouseEvent() {
+    public static void RectMouseEvent() {
         GuiRectangle rect = new GuiRectangle();
         rect.calcBtn.addMouseListener(new RectMouseAdapter());
         rect.RectangleGridLayout();
     }
 
-    private static void RectAnonymousListener() {
+    public static void RectAnonymousListener() {
         GuiRectangle rect = new GuiRectangle();
-        
+
         // Does this work? why or why not?
         rect.addKeyListener(new KeyAdapter() {
             @Override
@@ -69,7 +71,6 @@ public class EventHandlingExamples {
             }
         });
 
-        
         // Does this work?
         rect.lengthTxt.addKeyListener(new KeyAdapter() {
             @Override
@@ -79,49 +80,47 @@ public class EventHandlingExamples {
                 System.out.println("Char: " + e.getKeyChar());
             }
         });
-        
+
         rect.RectangleGridLayout();
-        
+
     }
-    
-    private static void RectLamdbaListener(){
+
+    public static void RectLamdbaListener() {
         GuiRectangle guiRect = new GuiRectangle();
         guiRect.RectangleGridLayout();
-        
+
         ActionListener[] listeners = guiRect.calcBtn.getActionListeners();
-        for(ActionListener l : listeners)
+        for (ActionListener l : listeners) {
             guiRect.calcBtn.removeActionListener(l);
-        
+        }
+
         //why cant i do a lambda expression with mouse listeners
         // why is the concept of moving the code to the data important
         // remember, if i were doing this inside GuiRectangle, i wouldnt need the public
         // references to data
-        guiRect.calcBtn.addActionListener(e -> { 
-            System.out.println("Lambda calc button clicked");
-            guiRect.rect.setLength(Double.parseDouble(guiRect.lengthTxt.getText()));
-            guiRect.rect.setWidth(Double.parseDouble(guiRect.widthTxt.getText()));
-            
-            guiRect.areaTxt.setText(String.valueOf(guiRect.rect.computeArea()));
-            guiRect.perimTxt.setText(String.valueOf(guiRect.rect.computePerimeter()));
+        guiRect.calcBtn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent event) {
+                System.out.println("my anonymous class was called");
+                ((JButton) (event.getSource())).setEnabled(false);
+                guiRect.rect.setLength(Double.parseDouble(guiRect.lengthTxt.getText()));
+                guiRect.rect.setWidth(Double.parseDouble(guiRect.widthTxt.getText()));
+
+                guiRect.areaTxt.setText(String.valueOf(guiRect.rect.computeArea()));
+                guiRect.perimTxt.setText(String.valueOf(guiRect.rect.computePerimeter()));
+
+            }
         });
-        
-        
+
+        guiRect.calcBtn.addActionListener(event -> {
+            System.out.println("Lambda calc button clicked");
+
+        });
+
     }
 
-    private static void CalcExample(){
-         Calculator c = new Calculator();
-         c.setVisible(true);
-                 
-    }
-    
-    public static void Run() {
-//        InnerClassPoints();
-
-//        RectActionEvent();
-//        RectMouseEvent();
-//        RectAnonymousListener();
-//        RectLamdbaListener();
-        
-        CalcExample();
+    public static void CalcExample() {
+        Calculator c = new Calculator();
+        c.setVisible(true);
     }
 }

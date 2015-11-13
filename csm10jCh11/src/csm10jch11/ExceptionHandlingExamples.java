@@ -24,24 +24,7 @@ class DivideByZeroException extends Exception{
  * @author johnr
  */
 public class ExceptionHandlingExamples {
-    public static void Run(){
-        //        Example11_3();
-        
-//        DefaultUncaught();
-//        
-//        PrintStack();
-        
-//        try
-//        {
-//            int a = 12, b = 0;
-//            Exercise11_9(a,b);
-//        }
-//        catch(DivideByZeroException dbzeRef){
-//            System.out.println("Got a divide by zero exception" + dbzeRef.getMessage());
-//        }
-        
-    }
-    private static void Example11_3(){
+    public static void Example11_3(){
         Scanner console = new Scanner(System.in);
         
         int dividend, divisor, quotient;
@@ -73,11 +56,11 @@ public class ExceptionHandlingExamples {
         // try adding finally to print out values of dividend / divisor / quotient
     }
     
-    private static void DefaultUncaught(){
+    public static void DefaultUncaught(){
         throw new RuntimeException("not catching it");
     }
     
-    private static void PrintStack(){
+    public static void PrintStack(){
         
         try{
             throw new RuntimeException("I want to print the stack");
@@ -91,7 +74,7 @@ public class ExceptionHandlingExamples {
     
     // modified exercise 11.9 based on checked exceptions, custom exception class
     // re-throwing exceptions
-    private static void Exercise11_9(int lowerLimit, int divisor) throws DivideByZeroException{
+    public static void Exercise11_9(int lowerLimit, int divisor) throws DivideByZeroException{
         int result = 0;
         
         try
